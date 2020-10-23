@@ -20,6 +20,7 @@ SELECT
 	DATEDIFF(MONTH, e.BirthDate, GETDATE()) / 12 AS Edad,
 	e.HireDate,
 	DATEDIFF(MONTH, e.HireDate, GETDATE()) / 12 AS Antig‹edad,
+	DATEDIFF(YEAR, e.HireDate, GETDATE()) AS Antig‹edadDos,
 	e.City, ISNULL(e.Region, 'N/A' ) AS Region, e.Country,
 	CASE ISNULL (e.ReportsTo, -1)
 		WHEN -1 THEN 'N/A'
@@ -28,7 +29,7 @@ SELECT
 	end AS ReportsToFullName, 
 	'' AS [EstratificacionEdad],
 	'' AS [EstratificacionAntiguedad]
-	INTO DWNorthWind.dbo.DimEmployees
+	--INTO DWNorthWind.dbo.DimEmployees
 FROM     Employees e
 	LEFT OUTER JOIN Employees e2
 	ON e.ReportsTo = e2.EmployeeID;
